@@ -1,0 +1,6 @@
+{
+  "name": "Doce Amor - Confeitaria Artesanal",
+  "description": "Loja online especializada em morangos do amor artesanais com casquinha rubi e chocolate belga sob encomenda.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
