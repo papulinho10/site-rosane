@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart, Plus, ShoppingBag, Check, Eye } from 'lucide-react';
+import { Heart, Plus, ShoppingBag, Check, Eye, Sparkles, Flame } from 'lucide-react';
 import { Product } from '../data';
 
 interface ProductCardProps {
@@ -14,7 +14,6 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
-  index = 0,
   onAddToCart,
   onQuickOrder,
   onClickCard,
@@ -44,19 +43,32 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     }
   };
 
+  const isFeatured = Boolean(product.isFeatured);
+  const isBestSeller = Boolean(product.isBestSeller);
+
   return (
     <div
       onClick={handleCardClick}
-      className={`group relative rounded-3xl overflow-hidden bg-[#1e040b]/90 border border-rose-900/50 hover:border-rose-500/70 shadow-xl shadow-black/70 hover:shadow-[0_15px_40px_rgba(225,29,72,0.3)] transition-all duration-300 flex flex-col justify-between cursor-pointer ${
+      className={`group relative rounded-3xl overflow-hidden transition-all duration-300 flex flex-col justify-between cursor-pointer ${
+        isFeatured
+          ? 'bg-gradient-to-b from-[#2b0612] via-[#1f040b] to-[#150207] border-2 border-amber-400/70 hover:border-amber-300 shadow-[0_12px_35px_rgba(245,158,11,0.22),0_10px_30px_rgba(0,0,0,0.85)] hover:shadow-[0_18px_45px_rgba(245,158,11,0.38)] ring-1 ring-amber-400/25'
+          : 'bg-[#1e040b]/90 border border-rose-900/50 hover:border-rose-500/70 shadow-xl shadow-black/70 hover:shadow-[0_15px_40px_rgba(225,29,72,0.3)]'
+      } ${
         isCarouselItem ? 'w-[280px] sm:w-[320px] flex-shrink-0' : 'w-full'
       }`}
       title="Clique para ver detalhes em relevo"
     >
+      {/* Top Gold Shimmer Bar for Featured Cravejados */}
+      {isFeatured && (
+        <div className="h-1 w-full bg-gradient-to-r from-amber-500 via-yellow-300 to-amber-500" />
+      )}
+
       {/* Product Image Container */}
       <div className="relative aspect-[4/3] overflow-hidden bg-rose-950/40">
         <img
           src={product.image}
           alt={product.name}
+          referrerPolicy="no-referrer"
           draggable="false"
           className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500 ease-out select-none pointer-events-none"
         />
@@ -66,14 +78,34 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Tag badge if present */}
         {product.tag && (
-          <div className="absolute top-3 left-3 bg-gradient-to-r from-rose-600 to-rose-700 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow-md border border-rose-400/30 flex items-center gap-1">
-            <Heart size={11} fill="currentColor" />
+          <div
+            className={`absolute top-3 left-3 text-[11px] font-extrabold px-3 py-1 rounded-full shadow-lg flex items-center gap-1.5 ${
+              isFeatured
+                ? 'bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 text-[#1a0308] border border-white/60 shadow-[0_4px_15px_rgba(245,158,11,0.5)]'
+                : isBestSeller
+                ? 'bg-gradient-to-r from-rose-500 via-rose-600 to-amber-600 text-white border border-amber-300/50'
+                : 'bg-gradient-to-r from-rose-600 to-rose-700 text-white border border-rose-400/30'
+            }`}
+          >
+            {isFeatured ? (
+              <Sparkles size={12} className="text-[#1a0308] fill-current" />
+            ) : isBestSeller ? (
+              <Flame size={12} fill="currentColor" className="text-amber-200" />
+            ) : (
+              <Heart size={11} fill="currentColor" />
+            )}
             <span>{product.tag}</span>
           </div>
         )}
 
         {/* Price tag */}
-        <div className="absolute top-3 right-3 bg-black/75 backdrop-blur-md text-white border border-rose-600/50 text-xs sm:text-sm font-black px-3 py-1 rounded-full shadow-lg">
+        <div
+          className={`absolute top-3 right-3 backdrop-blur-md text-xs sm:text-sm font-black px-3 py-1 rounded-full shadow-lg border ${
+            isFeatured
+              ? 'bg-black/85 text-amber-300 border-amber-400/60'
+              : 'bg-black/75 text-white border-rose-600/50'
+          }`}
+        >
           {product.price}
         </div>
 
@@ -89,17 +121,39 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* Content */}
       <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
         <div>
-          <h3 className="font-serif text-base sm:text-lg font-bold text-white group-hover:text-rose-200 transition-colors mb-2 leading-snug">
-            {product.name}
-          </h3>
-          <div className="mb-4 bg-black/35 border border-rose-900/50 rounded-xl p-2.5 text-left">
-            <span className="text-[10px] font-bold text-rose-400 uppercase tracking-wider block mb-1.5">
+          <div className="flex items-center justify-between gap-2 mb-2">
+            <h3
+              className={`font-serif text-base sm:text-lg font-bold transition-colors leading-snug ${
+                isFeatured
+                  ? 'text-amber-100 group-hover:text-amber-300'
+                  : 'text-white group-hover:text-rose-200'
+              }`}
+            >
+              {product.name}
+            </h3>
+          </div>
+          <div
+            className={`mb-4 rounded-xl p-2.5 text-left border ${
+              isFeatured
+                ? 'bg-black/45 border-amber-500/30'
+                : 'bg-black/35 border-rose-900/50'
+            }`}
+          >
+            <span
+              className={`text-[10px] font-bold uppercase tracking-wider block mb-1.5 ${
+                isFeatured ? 'text-amber-400' : 'text-rose-400'
+              }`}
+            >
               Ingredientes &amp; Composição:
             </span>
             <ul className="space-y-1 text-xs text-rose-200/90 font-normal">
               {product.ingredients.map((item, i) => (
                 <li key={i} className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 shrink-0" />
+                  <span
+                    className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+                      isFeatured ? 'bg-amber-400' : 'bg-rose-500'
+                    }`}
+                  />
                   <span className="truncate">{item}</span>
                 </li>
               ))}

@@ -65,18 +65,33 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
           
           {/* Left Column: Image in Relief */}
-          <div className="md:col-span-5 relative rounded-2xl overflow-hidden aspect-square border border-rose-700/60 shadow-[0_12px_30px_rgba(0,0,0,0.8)] bg-black/40 group">
+          <div
+            className={`md:col-span-5 relative rounded-2xl overflow-hidden aspect-square shadow-[0_12px_30px_rgba(0,0,0,0.8)] bg-black/40 group border ${
+              product.isFeatured ? 'border-amber-400/70' : 'border-rose-700/60'
+            }`}
+          >
             <img
               src={product.image}
               alt={product.name}
+              referrerPolicy="no-referrer"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#150207]/80 via-transparent to-black/30" />
 
             {/* Tag Badge */}
             {product.tag && (
-              <div className="absolute top-3 left-3 bg-gradient-to-r from-rose-600 to-rose-700 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg border border-rose-400/40 flex items-center gap-1.5">
-                <Heart size={12} fill="currentColor" />
+              <div
+                className={`absolute top-3 left-3 text-xs font-extrabold px-3 py-1 rounded-full shadow-lg flex items-center gap-1.5 ${
+                  product.isFeatured
+                    ? 'bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 text-[#1a0308] border border-white/60'
+                    : 'bg-gradient-to-r from-rose-600 to-rose-700 text-white border border-rose-400/40'
+                }`}
+              >
+                {product.isFeatured ? (
+                  <Sparkles size={12} fill="currentColor" />
+                ) : (
+                  <Heart size={12} fill="currentColor" />
+                )}
                 <span>{product.tag}</span>
               </div>
             )}
@@ -92,7 +107,11 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             <div>
               <div className="flex items-center gap-2 text-xs text-rose-400 font-bold uppercase tracking-wider mb-1">
                 <Sparkles size={13} className="text-amber-400" />
-                <span>Morango do Amor Artesanal</span>
+                <span>
+                  {product.isFeatured
+                    ? 'Destaque • Mais Vendido'
+                    : 'Morango Artesanal'}
+                </span>
               </div>
 
               <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white leading-tight">

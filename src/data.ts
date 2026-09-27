@@ -6,8 +6,10 @@ export interface Product {
   price: string;
   numericPrice: number;
   image: string;
-  category: 'rubi' | 'chocolate' | 'combos';
+  category: 'cravejado' | 'tradicional' | 'chocolate';
   tag?: string;
+  isFeatured?: boolean;
+  isBestSeller?: boolean;
 }
 
 export interface CustomerReview {
@@ -25,94 +27,128 @@ export interface CustomerReview {
 export const products: Product[] = [
   {
     id: '1',
-    name: 'Morango do Amor Clássico Rubi',
-    casca: 'Casca de caramelo cristal rubi',
+    name: 'Morango Cravejado Branco',
+    casca: 'Casca de chocolate branco cravejada com pedaços',
     ingredients: [
       'Morango fresco selecionado',
       'Branquinho com Leite Ninho',
-      'Casca de caramelo cristal rubi'
+      'Casca de chocolate branco cravejada com pedaços'
     ],
-    price: 'R$ 16,00',
-    numericPrice: 16.0,
-    image: 'https://images.unsplash.com/photo-1582293041079-7814c2f12063?auto=format&fit=crop&q=80&w=800',
-    category: 'rubi',
-    tag: 'Mais Pedido'
+    price: 'R$ 20,00',
+    numericPrice: 20.0,
+    image: 'https://i.postimg.cc/2yLDyHMb/07-morango-branco-com-pedacos.jpg',
+    category: 'cravejado',
+    tag: 'Mais Vendido • Destaque',
+    isFeatured: true,
+    isBestSeller: true
   },
   {
     id: '2',
-    name: 'Morango do Amor com Chocolate',
-    casca: 'Casca de chocolate ao leite nobre',
+    name: 'Morango Cravejado Preto',
+    casca: 'Casca de chocolate preto cravejada com pedaços',
     ingredients: [
       'Morango fresco selecionado',
       'Branquinho com Leite Ninho',
-      'Casca de chocolate ao leite nobre'
+      'Casca de chocolate preto cravejada com pedaços'
+    ],
+    price: 'R$ 20,00',
+    numericPrice: 20.0,
+    image: 'https://i.postimg.cc/T2KLnTXN/09-morango-chocolate-preto-com-pedacos.jpg',
+    category: 'cravejado',
+    tag: 'Mais Vendido • Destaque',
+    isFeatured: true,
+    isBestSeller: true
+  },
+  {
+    id: '3',
+    name: 'Morango do Amor',
+    casca: 'Casca de caramelo cristal vermelho',
+    ingredients: [
+      'Morango fresco selecionado',
+      'Branquinho com Leite Ninho',
+      'Casca de caramelo cristal vermelho'
+    ],
+    price: 'R$ 16,00',
+    numericPrice: 16.0,
+    image: 'https://i.postimg.cc/WbSnt2m7/03-morango-do-amor-vermelho.jpg',
+    category: 'tradicional',
+    tag: 'Mais Vendido',
+    isBestSeller: true
+  },
+  {
+    id: '4',
+    name: 'Morango Caramelizado',
+    casca: 'Casca de caramelo dourado crocante',
+    ingredients: [
+      'Morango fresco selecionado',
+      'Branquinho com Leite Ninho',
+      'Casca de caramelo dourado crocante'
+    ],
+    price: 'R$ 16,00',
+    numericPrice: 16.0,
+    image: 'https://i.postimg.cc/T3FnWhK3/02-morango-caramelizado.jpg',
+    category: 'tradicional',
+    tag: 'Clássico'
+  },
+  {
+    id: '5',
+    name: 'Morango Chocolate',
+    casca: 'Casca de chocolate ao leite',
+    ingredients: [
+      'Morango fresco selecionado',
+      'Branquinho com Leite Ninho',
+      'Casca de chocolate ao leite'
     ],
     price: 'R$ 18,00',
     numericPrice: 18.0,
-    image: 'https://images.unsplash.com/photo-1548858760-449e32a677ca?auto=format&fit=crop&q=80&w=800',
+    image: 'https://i.postimg.cc/bYVrvWDh/05-morango-chocolate-ao-leite.jpg',
     category: 'chocolate',
     tag: 'Favorito'
   },
   {
-    id: '3',
-    name: 'Morango do Amor Leite Ninho & Branco',
-    casca: 'Casca de chocolate branco nobre',
+    id: '6',
+    name: 'Morango Chocolate Branco',
+    casca: 'Casca de chocolate branco',
     ingredients: [
       'Morango fresco selecionado',
       'Branquinho com Leite Ninho',
-      'Casca de chocolate branco nobre'
+      'Casca de chocolate branco'
     ],
-    price: 'R$ 20,00',
-    numericPrice: 20.0,
-    image: 'https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&q=80&w=800',
+    price: 'R$ 18,00',
+    numericPrice: 18.0,
+    image: 'https://i.postimg.cc/vmyHjdjn/06-morango-chocolate-branco.jpg',
     category: 'chocolate',
     tag: 'Especial'
   },
   {
-    id: '4',
-    name: 'Morango do Amor Nutella & Avelã',
-    casca: 'Casca de chocolate com Nutella & avelãs tostadas',
+    id: '7',
+    name: 'Morango Choc com Amendoim',
+    casca: 'Casca de chocolate com amendoim',
     ingredients: [
       'Morango fresco selecionado',
       'Branquinho com Leite Ninho',
-      'Casca de chocolate com Nutella & avelãs tostadas'
+      'Casca de chocolate com amendoim'
     ],
-    price: 'R$ 20,00',
-    numericPrice: 20.0,
-    image: 'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&q=80&w=800',
+    price: 'R$ 19,00',
+    numericPrice: 19.0,
+    image: 'https://i.postimg.cc/8z2rz3Yr/04-morango-chocolate-com-castanhas.jpg',
+    category: 'chocolate',
+    tag: 'Crocante'
+  },
+  {
+    id: '8',
+    name: 'Morango Choc Branco com Amendoim',
+    casca: 'Casca de chocolate branco com amendoim',
+    ingredients: [
+      'Morango fresco selecionado',
+      'Branquinho com Leite Ninho',
+      'Casca de chocolate branco com amendoim'
+    ],
+    price: 'R$ 19,00',
+    numericPrice: 19.0,
+    image: 'https://i.postimg.cc/wxwym3PT/01-morango-chocolate-branco-com-castanhas.jpg',
     category: 'chocolate',
     tag: 'Irresistível'
-  },
-  {
-    id: '5',
-    name: 'Morango do Amor com Pistache',
-    casca: 'Casca de chocolate branco com pedacinhos de pistache',
-    ingredients: [
-      'Morango fresco selecionado',
-      'Branquinho com Leite Ninho',
-      'Casca de chocolate branco com pedacinhos de pistache'
-    ],
-    price: 'R$ 22,00',
-    numericPrice: 22.0,
-    image: 'https://images.unsplash.com/photo-1550254477-86f560c88722?auto=format&fit=crop&q=80&w=800',
-    category: 'chocolate',
-    tag: 'Gourmet'
-  },
-  {
-    id: '6',
-    name: 'Caixa Presente com 4 Morangos do Amor',
-    casca: 'Cascas à sua escolha',
-    ingredients: [
-      '4 Morangos frescos graúdos',
-      'Branquinho com Leite Ninho',
-      'Cascas à sua escolha (Rubi, Chocolate, Branco, Nutella ou Pistache)',
-      'Caixa rígida com visor transparente e laço de cetim'
-    ],
-    price: 'R$ 70,00',
-    numericPrice: 70.0,
-    image: 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&q=80&w=800',
-    category: 'combos',
-    tag: 'Presente Perfeito'
   }
 ];
 
@@ -122,9 +158,9 @@ export const reviews: CustomerReview[] = [
     name: 'Mariana & Lucas',
     role: 'Casal Apaixonado',
     stars: 5,
-    quote: 'O morango do amor clássico da Rosane foi a estrela da nossa comemoração! Casquinha perfeita, estalando na mordida e o morango super doce e fresco.',
-    fullReview: 'Pedimos para comemorar nosso aniversário de namoro e superou qualquer expectativa! A casquinha vermelha estava brilhante como vidro e fez aquele estalo delicioso. O morango era gigante, maduro e sem nada azedo. Já viramos clientes fiéis da Rosane!',
-    flavor: 'Morango do Amor Clássico Rubi',
+    quote: 'O Morango Cravejado Branco e o Cravejado Preto foram as estrelas da nossa comemoração! O branquinho com Ninho por dentro e a casca cravejada são perfeitos.',
+    fullReview: 'Pedimos para comemorar nosso aniversário de namoro e superou qualquer expectativa! Os morangos cravejados são enormes, super frescos, com uma camada maravilhosa de branquinho com Leite Ninho e a casca super crocante. Já viramos clientes fiéis da Rosane!',
+    flavor: 'Morango Cravejado Branco',
     date: 'Esta semana',
     orderType: 'Tele-entrega'
   },
@@ -133,9 +169,9 @@ export const reviews: CustomerReview[] = [
     name: 'Carolina Mendes',
     role: 'Cliente Fiel',
     stars: 5,
-    quote: 'O Morango com Chocolate é simplesmente divino. O morango veio enorme, bem fresquinho e com uma cobertura deliciosa de chocolate de muita qualidade!',
-    fullReview: 'Dá para notar o cuidado artesanal logo na primeira mordida. O morango estava bem doce e fresquinho, com uma camada generosa de chocolate muito gostoso. A entrega chegou super rápida!',
-    flavor: 'Morango do Amor com Chocolate',
+    quote: 'O Morango Cravejado Preto é simplesmente divino. O morango veio enorme, bem fresquinho, com branquinho de Leite Ninho e casca cravejada deliciosa!',
+    fullReview: 'Dá para notar o cuidado artesanal logo na primeira mordida. O morango estava bem doce e fresquinho, envolvido no branquinho com Leite Ninho e aquela casca cravejada incrível. A entrega chegou super rápida!',
+    flavor: 'Morango Cravejado Preto',
     date: 'Há 3 dias',
     orderType: 'Tele-entrega'
   },
@@ -144,9 +180,9 @@ export const reviews: CustomerReview[] = [
     name: 'Gabriel Souza',
     role: 'Comprador Verificado',
     stars: 5,
-    quote: 'Pedi a caixa presente com 4 morangos variados para presentear e fez o maior sucesso! O capricho na embalagem e o sabor são nota 10.',
-    fullReview: 'Fui buscar no ateliê e o atendimento foi nota mil. A embalagem é de um bom gosto impressionante, com laço lindo e os 4 morangos pareciam verdadeiras joias. Minha namorada amou demais a surpresa!',
-    flavor: 'Caixa Presente com 4 Morangos',
+    quote: 'Pedi o Morango do Amor e o Caramelizado para presentear e fez o maior sucesso! Casquinha fininha estalando na mordida e recheio cremoso.',
+    fullReview: 'Fui buscar no ateliê e o atendimento foi nota mil. Os morangos pareciam verdadeiras joias, com a casca brilhante e crocante e o branquinho de Leite Ninho por dentro. Minha namorada amou demais!',
+    flavor: 'Morango do Amor',
     date: 'Semana passada',
     orderType: 'Retirada no Ateliê'
   },
@@ -155,20 +191,20 @@ export const reviews: CustomerReview[] = [
     name: 'Juliana Paiva',
     role: 'Cliente Encantada',
     stars: 5,
-    quote: 'O de Pistache e o de Leite Ninho são uma loucura de tão gostosos! Crocantes por fora e super cremosos por dentro.',
-    fullReview: 'Doces feitos com muito capricho! O de pistache é maravilhoso e o de ninho é docinho na medida certa. Dá para sentir que o morango é fresco de verdade.',
-    flavor: 'Morango do Amor com Pistache',
+    quote: 'O Morango Choc com Amendoim e o Choc Branco com Amendoim são uma loucura de tão gostosos! Crocantes por fora e super cremosos por dentro.',
+    fullReview: 'Doces feitos com muito capricho! A combinação do morango fresco com o branquinho de Leite Ninho e a casca com amendoim é perfeita. Dá para sentir que tudo é feito no dia.',
+    flavor: 'Morango Choc com Amendoim',
     date: 'Há 5 dias',
     orderType: 'Tele-entrega'
   },
   {
     id: 'r5',
     name: 'Renata & Felipe',
-    role: 'Clientes Habitual',
+    role: 'Clientes Habituais',
     stars: 5,
-    quote: 'A melhor casquinha de morango do amor que já comemos na vida. Não gruda no dente, é fininha e crocante como deve ser.',
-    fullReview: 'Toda sexta-feira pedimos nossos morangos da Rosane. O cuidado com a entrega e o ponto exato da calda é o grande diferencial. Não tem comparação na cidade toda!',
-    flavor: 'Morango do Amor Clássico Rubi',
+    quote: 'Os melhores morangos que já comemos na vida. Os Cravejados e o Morango Chocolate Branco são viciantes!',
+    fullReview: 'Toda sexta-feira pedimos nossos morangos da Rosane. O cuidado com a entrega e a qualidade do branquinho com Leite Ninho e das cascas fazem toda a diferença. Não tem comparação!',
+    flavor: 'Morango Chocolate Branco',
     date: 'Há 2 dias',
     orderType: 'Tele-entrega'
   }

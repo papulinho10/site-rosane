@@ -329,6 +329,40 @@ export default function App() {
           </section>
 
           {/* ========================================================= */}
+          {/* 2.5 DESTAQUE: MORANGOS CRAVEJADOS • MAIS VENDIDOS         */}
+          {/* ========================================================= */}
+          <section className="py-6 sm:py-10 px-4 sm:px-6 max-w-5xl mx-auto">
+            <div className="p-5 sm:p-8 rounded-3xl bg-gradient-to-b from-[#2b0612]/90 via-[#1d030b]/95 to-[#140207] border border-amber-400/50 shadow-[0_20px_50px_rgba(0,0,0,0.85),0_0_35px_rgba(245,158,11,0.18)]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-amber-500/25">
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 text-[#1a0308] text-xs font-extrabold uppercase tracking-wider shadow-md">
+                    <Sparkles size={13} fill="currentColor" />
+                    <span>Mais Vendidos</span>
+                  </span>
+                  <h2 className="font-serif text-2xl sm:text-3xl font-bold text-amber-100 tracking-tight">
+                    Morangos Cravejados em Destaque
+                  </h2>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                {products
+                  .filter((p) => p.isFeatured)
+                  .map((product, index) => (
+                    <ProductCard
+                      key={product.id}
+                      product={product}
+                      index={index}
+                      onAddToCart={(p) => handleAddToCart(p, 1)}
+                      onQuickOrder={(p) => handleQuickOrder(p, 1)}
+                      onClickCard={handleProductClick}
+                    />
+                  ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ========================================================= */}
           {/* 3. HORIZONTAL AUTO-SCROLLING PRODUCTS SHOWCASE (INFINITE) */}
           {/* ========================================================= */}
           <section className="py-6 sm:py-10 px-4 sm:px-6 max-w-7xl mx-auto">
